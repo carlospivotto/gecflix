@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>.:: Gecflix ::.</title>
+</h:head>
+<h:body>
+	<h1>Novo Filme</h1>
+	<h:form>
+		<h:messages />
+		<fieldset>
+			<legend>Dados do Filme</legend>
+			<h:panelGrid columns="2">
+
+				<h:outputLabel value="Título:" for="titulo" />
+				<h:inputText id="titulo" value="#{filmeBean.filme.titulo}"
+					required="true" requiredMessage="Título do filme é obrigatório"
+					validatorMessage="Título deve ter tamanho máximo de 100 caracteres">
+					<f:validateLength maximum="100" />
+				</h:inputText>
+
+				<h:outputLabel value="Data:" for="dataLancamento" />
+				<h:inputText id="dataLancamento"
+					value="#{filmeBean.filme.dataLancamento}" />
+
+			</h:panelGrid>
+		</fieldset>
+
+		<!-- Selecionar Artistas do Filme -->
+		<fieldset>
+			<legend>Artistas</legend>
+			<h:outputLabel value="Artista: " for="artista" />
+			<h:selectOneMenu id="artista" value="#{filmeBean.artistaId}">
+				<f:selectItems value="#{filmeBean.artistas}" var="artista"
+					itemLabel="#{artista.nome}" itemValue="#{artista.id}" />
+			</h:selectOneMenu>
+			<h:commandButton value="Salvar Artista"
+				action="#{filmeBean.salvarArtista}" />
+
+			<h:dataTable value="#{filmeBean.artistasFilme}" var="artista">
+				<h:column>
+					<h:outputText value="#{artista.nome}" />
+				</h:column>
+			</h:dataTable>
+		</fieldset>
+		<h:commandButton value="Salvar" action="#{filmeBean.salvar}" />
+	</h:form>
+
+	<!-- Lista de Filmes -->
+	<h:dataTable id="tabelaFilmes" value="#{filmeBean.filmes}" var="filme">
+		<h:column>
+			<f:facet name="header">Título</f:facet>
+			<h:outputText value="#{filme.titulo}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">Data</f:facet>
+			<h:outputText value="#{filme.dataLancamento}" />
+		</h:column>
+	</h:dataTable>
+	
+</h:body>
+</html>

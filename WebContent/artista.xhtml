@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>.:: Gecflix ::.</title>
+</h:head>
+<h:body>
+	<h1>Novo Artista</h1>
+	<h:form>
+		<fieldset>
+			<legend>Dados do Artista</legend>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Nome:" for="nome" />
+				<h:inputText id="nome" value="#{artistaBean.artista.nome}" />
+				<h:commandButton value="Salvar" action="#{artistaBean.salvar}" />
+			</h:panelGrid>
+		</fieldset>
+	</h:form>
+</h:body>
+</html>
